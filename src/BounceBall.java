@@ -21,11 +21,14 @@ public class BounceBall extends JFrame {
 
 
 
+//    final private BallGLEventListener listener = new BallGLEventListener();
+//    final private Pages listener = new Pages();
+
 
     public BounceBall() {
         super("Bounce Ball");
-        animator = new FPSAnimator(glcanvas, 60);
 
+        animator = new FPSAnimator(glcanvas , 120) ;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // إعداد الغcanvas ومراقبي الأحداث
