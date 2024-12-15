@@ -9,11 +9,13 @@ import javax.media.opengl.GLCanvas;
 public class BounceBall extends JFrame {
     static FPSAnimator animator  ;
     GLCanvas glcanvas  = new GLCanvas();
-    final private BallGLEventListener listener = new BallGLEventListener();
+//    final private BallGLEventListener listener = new BallGLEventListener();
+    final private Pages listener = new Pages();
+
 
     public BounceBall() {
         super("Bounce Ball");
-        animator = new FPSAnimator(glcanvas , 60) ;
+        animator = new FPSAnimator(glcanvas , 120) ;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         glcanvas.addGLEventListener(listener);
         glcanvas.addKeyListener(listener);

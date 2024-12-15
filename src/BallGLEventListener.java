@@ -28,6 +28,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
         new BounceBall();
         BounceBall.animator.start();
     }
+
     /*
      5 means gun in array pos
      x and y coordinate for gun
@@ -69,86 +70,86 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
 
     }
 
-    double x ;
-    double x_ball = 0 , y_ball = -100 ;
-    double dx = -5 ;
-     double dy = 5 ;
-    boolean startBall = false ;
+    double x;
+    double x_ball = 0, y_ball = -100;
+    double dx = -5;
+    double dy = 5;
+    boolean startBall = false;
+
     public void display(GLAutoDrawable gld) {
         gl = gld.getGL();
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
         DrawBackground(70);
-        for (int i = -100; i < 100; i += 45) {
-            DrawSprite(i, 0, 3, 20, 10);
-        }
-        gl.glPushMatrix();
-        gl.glTranslated(x, -450, 0);
-        DrawSprite(0, -0, 50, 100, 15);
-        gl.glPopMatrix();
-
-        gl.glPushMatrix();
-        gl.glTranslated(x_ball, y_ball , 0);
-        DrawSprite(0, 0, 58, 15, 15);
-        gl.glPopMatrix();
-
-        if (startBall){
-            x_ball += dx;
-            y_ball += dy;
-        }
-        if (-hight >= y_ball){
-            startBall = false ;
-            x_ball = 0  ;
-            y_ball = -100 ;
-        }
-
-        double r = 15 ;
-
-        if(x_ball >=  width - r || x_ball <= -width + r) {
-            dx = -dx;
-
-                playSound();
-
-        }
-        if(y_ball >=  hight - r  ) {
-            dy = -dy;
-
-                playSound();
-
-        }
-        if ( y_ball <= -hight + r){
-            x_ball = 0 ;
-            y_ball = -100 ;
-            x = 0 ;
-            startBall = false ;
-            dx = 3 ;
-            dy = 3 ;
-        }
-        // Bar dimensions and position
-        double barWidth = 200;
-        double barHeight = 15;
-        double barY = -450; // Bar's fixed Y position
-
-// Check collision with the bar
-        if (y_ball - r <= barY + barHeight / 2 && y_ball + r >= barY - barHeight / 2) {
-            if (x_ball >= x - barWidth / 2 && x_ball <= x + barWidth / 2) {
-                dy = -dy; // Reverse vertical direction
-                double barWight = 200 ;
-
-                dx = (x_ball-x)/(100/3) ;
-
-                playSound();
-            }
-        }
-
-
-
-        DrawSprite(-650, 450, 71, 30, 30);
+//        for (int i = -100; i < 100; i += 45) {
+//            DrawSprite(i, 0, 3, 20, 10);
+//        }
+//        gl.glPushMatrix();
+//        gl.glTranslated(x, -450, 0);
+//        DrawSprite(0, -0, 50, 100, 15);
+//        gl.glPopMatrix();
+//
+//        gl.glPushMatrix();
+//        gl.glTranslated(x_ball, y_ball, 0);
+//        DrawSprite(0, 0, 58, 15, 15);
+//        gl.glPopMatrix();
+//
+//        if (startBall) {
+//            x_ball += dx;
+//            y_ball += dy;
+//        }
+//        if (-hight >= y_ball) {
+//            startBall = false;
+//            x_ball = 0;
+//            y_ball = -100;
+//        }
+//
+//        double r = 15;
+//
+//        if (x_ball >= width - r || x_ball <= -width + r) {
+//            dx = -dx;
+//
+//            playSound();
+//
+//        }
+//        if (y_ball >= hight - r) {
+//            dy = -dy;
+//
+//            playSound();
+//
+//        }
+//        if (y_ball <= -hight + r) {
+//            x_ball = 0;
+//            y_ball = -100;
+//            x = 0;
+//            startBall = false;
+//            dx = 3;
+//            dy = 3;
+//        }
+//        // Bar dimensions and position
+//        double barWidth = 200;
+//        double barHeight = 15;
+//        double barY = -450; // Bar's fixed Y position
+//
+//// Check collision with the bar
+//        if (y_ball - r <= barY + barHeight / 2 && y_ball + r >= barY - barHeight / 2) {
+//            if (x_ball >= x - barWidth / 2 && x_ball <= x + barWidth / 2) {
+//                dy = -dy; // Reverse vertical direction
+//                double barWight = 200;
+//
+//                dx = (x_ball - x) / (100 / 3);
+//
+//                playSound();
+//            }
+//        }
+//
+//
+//        DrawSprite(-650, 450, 71, 30, 30);
     }
 
-    public double sqrdDistance(double x, double y, double x1, double y1){
-        return Math.pow(x-x1,2)+Math.pow(y-y1,2);
+    public double sqrdDistance(double x, double y, double x1, double y1) {
+        return Math.pow(x - x1, 2) + Math.pow(y - y1, 2);
     }
 
     public static void playSound() {
@@ -161,8 +162,6 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
             System.out.println(e);
         }
     }
-
-
 
 
     public void DrawSprite(double x, double y, int index, float scale_x, float scale_y) {
@@ -225,9 +224,9 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
         int keycode = event.getKeyCode();
         System.out.println(x);
 
-        if(x >= -width+60 && keycode ==KeyEvent.VK_LEFT ) x -= 10;
-        if(x <=  width-60 && keycode ==KeyEvent.VK_RIGHT ) x += 10;
-        if(keycode ==KeyEvent.VK_SPACE ) startBall = true ;
+        if (x >= -width + 60 && keycode == KeyEvent.VK_LEFT) x -= 10;
+        if (x <= width - 60 && keycode == KeyEvent.VK_RIGHT) x += 10;
+        if (keycode == KeyEvent.VK_SPACE) startBall = true;
     }
 
     @Override
