@@ -155,16 +155,6 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
             playSound();
         }
 
-//        if (y_ball <= -hight + 15) {
-//            System.out.println( "before"+count);
-//            startBall=false;
-//            count++;
-////            resetBall(); // إعادة تعيين الكرة عند سقوطها
-////            startBall=false;
-////            System.out.println( "before"+count);
-////            count++;
-//            System.out.println(count);
-//        }
         checkGameStatus();
 
         // التحقق من التصادم مع الطوب

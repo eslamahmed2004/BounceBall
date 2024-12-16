@@ -8,6 +8,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib64" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" name="lib65" level="project" />
+=======
+    <orderEntry type="library" name="lib66" level="project" />
+>>>>>>> 38f5e6b1b58655fdcf5cb29d30ea96ebee6c79b2
   </component>
 </module>
