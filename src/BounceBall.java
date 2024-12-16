@@ -13,9 +13,9 @@ import com.sun.opengl.util.FPSAnimator;
 public class BounceBall extends JFrame {
     static FPSAnimator animator  ;
     GLCanvas glcanvas  = new GLCanvas();
-    final private Pages listener = new Pages();
+//    final private Pages listener = new Pages();
 //    private GLCanvas glcanvas = new GLCanvas();
-//    private final BallGLEventListener listener = new BallGLEventListener();
+    private final BallGLEventListener listener = new BallGLEventListener();
     private int timeLeft = 60;
     private JLabel timerLabel = new JLabel("Time left: 60", SwingConstants.CENTER);
     private JButton startStopButton = new JButton("Start Game");
@@ -36,22 +36,22 @@ public class BounceBall extends JFrame {
         glcanvas.addMouseListener(listener);
 
         // إعداد المؤقت النصي
-        timerLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        timerLabel.setForeground(Color.RED);
+//        timerLabel.setFont(new Font("Arial", Font.BOLD, 24));
+//        timerLabel.setForeground(Color.RED);
 
         // إعداد زر التحكم في اللعبة
-        startStopButton.addActionListener(this::toggleGame);
+//        startStopButton.addActionListener(this::toggleGame);
 
         // إعداد المؤقت
-        setupCountdownTimer();
+//        setupCountdownTimer();
 
         // ترتيب المكونات
-        JPanel controlPanel = new JPanel();
-        controlPanel.add(startStopButton);
-
+//        JPanel controlPanel = new JPanel();
+//        controlPanel.add(startStopButton);
+//
         add(glcanvas, BorderLayout.CENTER);
-        add(timerLabel, BorderLayout.NORTH);
-        add(controlPanel, BorderLayout.SOUTH);
+//        add(timerLabel, BorderLayout.NORTH);
+//        add(controlPanel, BorderLayout.SOUTH);
 
         setSize(1400, 1000);
         centerWindow();
