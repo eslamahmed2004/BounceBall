@@ -18,7 +18,7 @@ public class BounceBall extends JFrame {
         glcanvas.addGLEventListener(listener);
         glcanvas.addKeyListener(listener);
         glcanvas.addMouseListener(listener);
-
+        glcanvas.addMouseMotionListener(listener);
         add(glcanvas, BorderLayout.CENTER);
         setSize(1400, 1000);
         glcanvas.setFocusable(true);
