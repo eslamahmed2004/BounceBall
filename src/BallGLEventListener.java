@@ -18,7 +18,7 @@ import java.util.List;
 class BallGLEventListener implements GLEventListener, KeyListener, MouseListener {
 
     // ملف يحتوي على جميع الصور المستخدمة كخلفيات وقوام
-    File file = new File("D:\\CS304\\src\\PNG\\");
+    File file = new File("C:\\BounceBall\\src\\PNG\\");
     String[] textureNames = file.list();
     TextureReader.Texture[] texture = new TextureReader.Texture[textureNames.length];
     int[] textures = new int[textureNames.length];
@@ -64,7 +64,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
         gl.glGenTextures(textureNames.length, textures, 0);
         for (int i = 0; i < textureNames.length; i++) {
             try {
-                texture[i] = TextureReader.readTexture("D:\\CS304\\src\\PNG\\" + textureNames[i], true);
+                texture[i] = TextureReader.readTexture("C:\\BounceBall\\src\\PNG\\" + textureNames[i], true);
                 gl.glBindTexture(GL.GL_TEXTURE_2D, textures[i]);
                 glu.gluBuild2DMipmaps(GL.GL_TEXTURE_2D, GL.GL_RGBA, texture[i].getWidth(), texture[i].getHeight(), GL.GL_RGBA, GL.GL_UNSIGNED_BYTE, texture[i].getPixels());
             } catch (IOException e) {
@@ -285,7 +285,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
 
     public static void playSound() {
         try {
-            File wavFile = new File("D:\\CS304\\src\\solid.wav");
+            File wavFile = new File( "C:\\BounceBall\\src\\\\solid.wav");
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(wavFile));
             clip.start();
