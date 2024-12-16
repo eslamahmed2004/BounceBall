@@ -2,6 +2,7 @@
 import com.sun.opengl.util.FPSAnimator ;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.media.opengl.GLCanvas;
 
@@ -11,7 +12,7 @@ public class BounceBall extends JFrame {
     GLCanvas glcanvas  = new GLCanvas();
     final private BallGLEventListener listener = new BallGLEventListener();
 
-    public BounceBall() {
+    public BounceBall() throws FileNotFoundException {
         super("Bounce Ball");
         animator = new FPSAnimator(glcanvas , 60) ;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
