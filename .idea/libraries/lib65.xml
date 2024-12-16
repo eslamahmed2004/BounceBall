@@ -1,5 +1,6 @@
 <component name="libraryTable">
-  <library name="lib65">
+
+  <library name="lib64">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../JOGLwin/JOGLwin/lib64/gluegen-rt.jar!/" />
       <root url="jar://$PROJECT_DIR$/../JOGLwin/JOGLwin/lib64/jogl.jar!/" />
