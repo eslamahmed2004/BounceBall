@@ -15,7 +15,7 @@ import java.util.List;
 class
 BallGLEventListener implements GLEventListener, KeyListener, MouseListener, MouseMotionListener {
 
-    File file = new File("C:\\BounceBall\\src\\PNG");
+    File file = new File("D:\\BounceBall\\src\\PNG");
     String[] textureNames = file.list();
     TextureReader.Texture[] texture = new TextureReader.Texture[textureNames.length];
     int[] textures = new int[textureNames.length];
@@ -43,7 +43,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
 
         for (int i = 0; i < textureNames.length; i++) {
             try {
-                texture[i] = TextureReader.readTexture("C:\\BounceBall\\src\\PNG\\" + textureNames[i], true);
+                texture[i] = TextureReader.readTexture("D:\\BounceBall\\src\\PNG\\" + textureNames[i], true);
                 gl.glBindTexture(GL.GL_TEXTURE_2D, textures[i]);
                 glu.gluBuild2DMipmaps(
                         GL.GL_TEXTURE_2D,
