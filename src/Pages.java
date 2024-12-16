@@ -16,8 +16,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Arrays;
 
 class Pages implements GLEventListener, KeyListener, MouseListener {
+    JFrame frame = new JFrame("Button Example");
+    private String username = "";
+    private String SecondNamee= "";
+
 
     File file = new File("C:\\BounceBall\\src\\PNG");
     String[] textureNames = file.list();
@@ -25,6 +33,9 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
     int[] textures = new int[textureNames.length];
 
     public static void main(String[] args) {
+        JFrame frame = new JFrame("Button Example");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
         new BounceBall();
         BounceBall.animator.start();
     }
@@ -40,7 +51,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
         GL gl = gld.getGL();
         GLU glu = new GLU();
 
-        gl.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        gl.glClearColor(0f, 00f, 0f, 1.0f);
         gl.glEnable(GL.GL_TEXTURE_2D);
         gl.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA);
         gl.glGenTextures(textureNames.length, textures, 0);
@@ -60,7 +71,10 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
+
+
 
         // Set up orthographic projection
         gl.glMatrixMode(GL.GL_PROJECTION);
@@ -82,8 +96,9 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
-        DrawBackground(70);
-
+        HighscoreList();
+//        Entername();
+//        Name2Player();
     }
 
 
@@ -147,21 +162,96 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
 
     public void Start() {
+        DrawBackground(73); // رسم الخلفية
+        DrawSprite(0,0,74,300,100);
+//        Entername();
+//        if(!username.isEmpty()) {
+//            Home();
+//        }
 
     }
+
     public void Entername() {
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Enter Username");
+        dialog.setSize(300, 150);
+        dialog.setLocationRelativeTo(null);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
 
-    }  public void Home() {
+        JLabel label = new JLabel("Enter your username: ");
+        JTextField textField = new JTextField();
+        JButton submitButton = new JButton("Enter");
 
-    }  public void HighscoreList() {
+        submitButton.addActionListener(e -> {
+            username = textField.getText();
+            System.out.println("Username entered: " + username);
+            dialog.dispose();
+            Home();
+        });
 
-    }  public void instruction() {
+        panel.add(label, BorderLayout.NORTH);
+        panel.add(textField, BorderLayout.CENTER);
+        panel.add(submitButton, BorderLayout.SOUTH);
+
+        dialog.add(panel);
+
+        dialog.setModal(true);
+        dialog.setVisible(true);
+
+
 
     }
 
-//      public void Start() {
-//
-//    }
+    public void Home() {
+        DrawBackground(75);
+
+    }
+    public void HighscoreList(){
+
+        DrawSprite(-550,300,78,30,30);
+
+
+
+    }
+    public void instruction() {
+        DrawBackground(76);
+        DrawSprite(550,-400,77,100,30);
+
+
+    }
+
+
+    public void Name2Player() {
+        JDialog dialog = new JDialog();
+        dialog.setTitle("Enter SecondNamee");
+        dialog.setSize(300, 150);
+        dialog.setLocationRelativeTo(null);
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        JLabel label = new JLabel("Enter SecondNamee: ");
+        JTextField textField = new JTextField();
+        JButton submitButton = new JButton("Enter");
+
+        submitButton.addActionListener(e -> {
+            SecondNamee = textField.getText();
+            System.out.println("SecondNamee entered: " + SecondNamee);
+            dialog.dispose();
+            Home();
+        });
+
+        panel.add(label, BorderLayout.NORTH);
+        panel.add(textField, BorderLayout.CENTER);
+        panel.add(submitButton, BorderLayout.SOUTH);
+
+        dialog.add(panel);
+
+        dialog.setModal(true);
+        dialog.setVisible(true);
+
+
+    }
 
 
 
@@ -199,6 +289,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println("presed");
+        System.out.println(x);
 
     }
 
