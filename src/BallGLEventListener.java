@@ -26,6 +26,10 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
 
     double width = 700, hight = 500;
     GL gl;
+    boolean h1=true;
+    boolean h2=true;
+    boolean h3=true;
+    int count=0;
 
     public void init(GLAutoDrawable gld) {
         GL gl = gld.getGL();
@@ -85,9 +89,22 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
         }
 
         // رسم القلوب
-        DrawSprite(-390, 430, 60, 50, 50);
-        DrawSprite(-510, 430, 60, 50, 50);
-        DrawSprite(-630, 430, 60, 50, 50);
+        if (h1){
+        DrawSprite(-390, 430, 60, 50, 50);}
+        if (h2){
+        DrawSprite(-510, 430, 60, 50, 50);}
+        if (h3){
+        DrawSprite(-630, 430, 60, 50, 50);}
+
+        if (count>=1){
+            h1=false;
+        }
+        if (count>=2){
+            h2=false;
+        }
+        if (count>=3){
+            h3=false;
+        }
 
         // رسم الكائنات المتبقية
         gl.glPushMatrix();
@@ -110,6 +127,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
             startBall = false;
             x_ball = 0;
             y_ball = -400;
+
         }
 
         // إدارة الاصطدامات
@@ -129,6 +147,8 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
             startBall = false;
             dx = 3;
             dy = 3;
+            count ++;
+            System.out.println(count);
         }
 
         elapsedTime = System.nanoTime() - startTime;

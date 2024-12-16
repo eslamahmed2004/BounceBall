@@ -19,7 +19,7 @@ import java.io.IOException;
 
 class Pages implements GLEventListener, KeyListener, MouseListener {
 
-    File file = new File("C:\\BounceBall\\src\\PNG");
+    File file = new File("D:\\CS304\\src\\PNG\\");
     String[] textureNames = file.list();
     TextureReader.Texture[] texture = new TextureReader.Texture[textureNames.length];
     int[] textures = new int[textureNames.length];
@@ -47,7 +47,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
         for (int i = 0; i < textureNames.length; i++) {
             try {
-                texture[i] = TextureReader.readTexture("C:\\BounceBall\\src\\PNG\\" + textureNames[i], true);
+                texture[i] = TextureReader.readTexture("D:\\CS304\\src\\PNG\\" + textureNames[i], true);
                 gl.glBindTexture(GL.GL_TEXTURE_2D, textures[i]);
                 glu.gluBuild2DMipmaps(
                         GL.GL_TEXTURE_2D,
@@ -90,7 +90,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
     public static void playSound() {
         try {
-            File wavFile = new File("C:\\BounceBall\\src\\solid.wav");
+            File wavFile = new File("D:\\CS304\\src\\solid.wav");
             Clip clip = AudioSystem.getClip();
             clip.open(AudioSystem.getAudioInputStream(wavFile));
             clip.start();
