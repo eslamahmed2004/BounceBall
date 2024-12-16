@@ -1,5 +1,5 @@
 import Texture.TextureReader;
-
+import java.util.List;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
@@ -13,7 +13,6 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 class BallGLEventListener implements GLEventListener, KeyListener, MouseListener {
 
@@ -29,7 +28,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
         BounceBall.animator.start(); // بدء عملية التحديث المستمر للشاشة
     }
 
-    double width = 700, hight = 900; // أبعاد شاشة اللعبة
+    double width = 700, hight = 500; // أبعاد شاشة اللعبة
     GL gl;
     List<Brick> bricks = new ArrayList<>(); // قائمة تحتوي على جميع الطوب
     double brickWidth = 200, brickHeight = 80; // أبعاد الطوب
@@ -38,17 +37,19 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
     boolean h2 = true;
     boolean h3 = true;
 
-    // تعريف الطوب ككائن مستقل
-    class Brick {
-        double x, y; // إحداثيات الطوب
-        boolean visible; // حالة ظهور الطوب
+    //
+    List<Brick> level1 = new ArrayList<>();
+    List<Brick> level2 = new ArrayList<>();
+    List<Brick> level3 = new ArrayList<>();
+    List<Brick> level4 = new ArrayList<>();
+    List<Brick> level5 = new ArrayList<>();
+    List<Brick> level6 = new ArrayList<>();
 
-        Brick(double x, double y) {
-            this.x = x;
-            this.y = y;
-            this.visible = true; // الطوب مرئي عند إنشائه
-        }
-    }
+    // تعريف الطوب ككائن مستقل
+
+
+
+
 
     @Override
     public void init(GLAutoDrawable gld) {
@@ -70,15 +71,22 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            initLevels(-300,350,30, level1);
+            initLevels(-350,400,40,level2);
+            initLevels(-400,400,50,level3);
+            initLevels(-450,400,60, level4);
+            initLevels(-500,400,70, level5);
+            initLevels(-600,400,80, level6);
         }
 
         // إنشاء شبكة الطوب
-        for (double i = -600; i <= 600; i += brickWidth + 20) {
-            for (double j = 300; j <= 400; j += brickHeight + 10) {
-                bricks.add(new Brick(i, j));
-            }
-        }
 
+//        for (double i = -600; i <= 600; i += brickWidth + 20) {
+//            for (double j = 300; j <= 400; j += brickHeight + 10) {
+//                bricks.add(new Brick(i, j, 1,05));
+//            }
+//        }
         // إعدادات العرض ثنائية الأبعاد
         gl.glMatrixMode(GL.GL_PROJECTION);
         gl.glLoadIdentity();
@@ -199,7 +207,20 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
     }
 
 
-
+    void initLevels(int startX, int startY, int n, List<Brick> level){
+        int endX = -startX;
+        int index = 1;
+        for (int i = 0; i < n; i++) {
+            if (i %10 == 0) {
+                index += 2;
+            }
+            if (startX >= endX) {
+             startX = -endX;
+             startY -= 20;
+            }
+            level.add(new Brick(startX += 30, startY, 1, index));
+        }
+    }
 
 
     public void checkGameStatus() {
