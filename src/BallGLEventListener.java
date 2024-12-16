@@ -26,7 +26,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
     int[] textures = new int[textureNames.length];
     /**********************/
 
-    List<Button> buttons = new ArrayList<>();
+
     int[] pageNumbers = new int[14];
     File users = new File("src/UsersHighScore");
     List<User> usersList = new ArrayList<>();
