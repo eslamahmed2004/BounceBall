@@ -13,9 +13,9 @@ import com.sun.opengl.util.FPSAnimator;
 public class BounceBall extends JFrame {
     static FPSAnimator animator  ;
     GLCanvas glcanvas  = new GLCanvas();
-//    final private Pages listener = new Pages();
+    final private Pages listener = new Pages();
 //    private GLCanvas glcanvas = new GLCanvas();
-    private final BallGLEventListener listener = new BallGLEventListener();
+//    private final BallGLEventListener listener = new BallGLEventListener();
     private int timeLeft = 60;
     private JLabel timerLabel = new JLabel("Time left: 60", SwingConstants.CENTER);
     private JButton startStopButton = new JButton("Start Game");

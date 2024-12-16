@@ -72,6 +72,11 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
                 e.printStackTrace();
             }
 
+
+        }
+        for (int i = 0; i <textureNames.length; i++) {
+            System.out.println(textureNames[i]);
+
         }
 
 
@@ -96,7 +101,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
         gl.glClear(GL.GL_COLOR_BUFFER_BIT);
         gl.glLoadIdentity();
 
-        HighscoreList();
+        Home();
 //        Entername();
 //        Name2Player();
     }
@@ -162,8 +167,8 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
 
     public void Start() {
-        DrawBackground(73); // رسم الخلفية
-        DrawSprite(0,0,74,300,100);
+        DrawBackground(69); // رسم الخلفية
+        DrawSprite(0,0,70,300,100);
 //        Entername();
 //        if(!username.isEmpty()) {
 //            Home();
@@ -181,18 +186,18 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
         JLabel label = new JLabel("Enter your username: ");
         JTextField textField = new JTextField();
-        JButton submitButton = new JButton("Enter");
+//        JButton submitButton = new JButton("Enter");
 
-        submitButton.addActionListener(e -> {
-            username = textField.getText();
-            System.out.println("Username entered: " + username);
-            dialog.dispose();
-            Home();
-        });
+//        submitButton.addActionListener(e -> {
+//            username = textField.getText();
+//            System.out.println("Username entered: " + username);
+//            dialog.dispose();
+//            Home();
+//        });
 
         panel.add(label, BorderLayout.NORTH);
         panel.add(textField, BorderLayout.CENTER);
-        panel.add(submitButton, BorderLayout.SOUTH);
+//        panel.add(submitButton, BorderLayout.SOUTH);
 
         dialog.add(panel);
 
@@ -204,7 +209,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
     }
 
     public void Home() {
-        DrawBackground(75);
+        DrawBackground(71);
 
     }
     public void HighscoreList(){
@@ -215,8 +220,8 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
     }
     public void instruction() {
-        DrawBackground(76);
-        DrawSprite(550,-400,77,100,30);
+        DrawBackground(73);
+        DrawSprite(550,-400,72,100,30);
 
 
     }
@@ -282,7 +287,10 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("you click");
+        int x=e.getX();
+        int y=e.getY();
+
+        System.out.println(x+"         "+y);
 
     }
 
