@@ -1,6 +1,7 @@
 <component name="libraryTable">
   <library name="lib64">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/IdeaProjects/CS304/JOGLwin/lib64" />
     </CLASSES>
     <JAVADOC />
@@ -9,5 +10,15 @@
     </NATIVE>
     <SOURCES />
     <jarDirectory url="file://$USER_HOME$/IdeaProjects/CS304/JOGLwin/lib64" recursive="false" />
+=======
+      <root url="file://$USER_HOME$/Desktop/JOGLwin/JOGLwin/lib64" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/Desktop/JOGLwin/JOGLwin/lib64" />
+    </NATIVE>
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Desktop/JOGLwin/JOGLwin/lib64" recursive="false" />
+>>>>>>> 4ad4555829e078fa6f83360b2ceb25be7c0619be
   </library>
 </component>

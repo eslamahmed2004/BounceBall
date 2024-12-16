@@ -32,13 +32,7 @@ class Pages implements GLEventListener, KeyListener, MouseListener {
     TextureReader.Texture[] texture = new TextureReader.Texture[textureNames.length];
     int[] textures = new int[textureNames.length];
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Button Example");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(null);
-        new BounceBall();
-        BounceBall.animator.start();
-    }
+
 
     /*
      5 means gun in array pos
