@@ -88,7 +88,7 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
 
     double x = 0, y = -700; // موقع المضرب
     double x_ball = 0, y_ball = -400; // موقع الكرة
-    double dx = -5, dy = 5; // اتجاه وسرعة الكرة
+    double dx = -7, dy = 7; // اتجاه وسرعة الكرة
     boolean startBall = false; // حالة بدء تحرك الكرة
     double barWidth = 260; // عرض المضرب
     double barHeight = 15; // عرض المضرب
@@ -197,9 +197,6 @@ class BallGLEventListener implements GLEventListener, KeyListener, MouseListener
 
 
     }
-
-
-
 
 
     public void checkGameStatus() {
