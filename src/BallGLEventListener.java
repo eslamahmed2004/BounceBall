@@ -59,7 +59,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         }
         for (double i = -600; i <= 600; i += brickWidth + 20) {
             for (double j = 300; j <= 400; j += brickHeight + 10) {
-                bricks.add(new Brick(i, j));
+//                bricks.add(new Brick(i, j)
             }
         }
 
@@ -883,14 +883,4 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         mouseY = convertY(e.getY(), 2 * hight);
     }
 
-}
-class Brick {
-    double x, y; // إحداثيات الطوب
-    boolean visible; // حالة ظهور الطوب
-
-    Brick(double x, double y) {
-        this.x = x;
-        this.y = y;
-        this.visible = true; // الطوب مرئي عند إنشائه
-    }
 }
