@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/BounceBall.iml" filepath="$PROJECT_DIR$/.idea/BounceBall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS304.iml" filepath="$PROJECT_DIR$/CS304.iml" />
     </modules>
   </component>
 </project>
