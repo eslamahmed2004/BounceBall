@@ -4,6 +4,7 @@ public class Brick {
     int health;
     int index;
 
+
     Brick( double x, double y, int index){
         this.x = x;
         this.y = y;
@@ -15,4 +16,5 @@ public class Brick {
         this.x = x;
         this.y = y;
     }
+
 }

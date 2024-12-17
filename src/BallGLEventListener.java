@@ -83,6 +83,25 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         countBricks = level1.size();
 
     }
+    long previousTime = System.nanoTime();  // حفظ الوقت الحالي عند بداية اللعبة
+    int count2Time = 0;
+    int count3Time = 0;
+    int count3Score = 0;
+    int count4Score =0;
+    int count4Time=0;
+
+    int saveTime1=0;
+    int saveTime2=0;
+
+
+
+    boolean ClearOld = false;
+    boolean ClearNew = false;
+
+    final long oneSecondInNano = 1_000_000_000L; // ثابت يمثل ثانية واحدة بالنانوثانية
+
+    long currentTime = System.nanoTime();
+    long elapsedTime = currentTime - previousTime;
 
     double x;
     double y =-450;
@@ -92,7 +111,6 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
     boolean startBall = false;
     boolean start = false;
     long startTime = System.nanoTime();
-    long elapsedTime;
     boolean oneplayer = false;
     List<Brick> bricks = new ArrayList<>(); // قائمة تحتوي على جميع الطوب
     double brickWidth = 200, brickHeight = 80; // أبعاد الطوب
@@ -268,13 +286,13 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
 
     public void drawHearts() {
         if (heart1) {
-            DrawSprite(150, 450, 60, 20, 20);
-        }
-        if (heart2) {
             DrawSprite(200, 450, 60, 20, 20);
         }
-        if (heart3) {
+        if (heart2) {
             DrawSprite(250, 450, 60, 20, 20);
+        }
+        if (heart3) {
+            DrawSprite(300, 450, 60, 20, 20);
         }
     }
 
@@ -307,9 +325,42 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
             DrawSprite(0, 0, 74, 400, 400);
         }
 
-
         drawHearts();
+        Time2();
+        Score();
+
+
     }
+    public void Score(){
+
+
+        if (restart == true) {
+            count3Score = 0;
+            count4Score = 0;
+            restart = false;
+        }
+        for (Brick brick : level1) {
+            if (!brick.visible) {
+                count3Score++;
+                break;
+            }
+        }
+
+        if (count3Score > 9) {
+            count3Score = 0;
+            count4Score++;
+        }
+
+        if (count4Score > 9) {
+            count4Score = 0;
+        }
+
+        // رسم القيم
+        DrawSprite(130, 450, 76 + count3Score, 20, 20);
+        DrawSprite(80, 450, 76 + count4Score, 20, 20);
+    }
+
+
     public void handleEndGameScreen(double mouseX, double mouseY) {
         if (isclicked) {
             isclicked = false;
@@ -451,14 +502,63 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
     }
 
 
+    public void Time2() {
+        if (restart) {
+            count2Time = 0;
+            count3Time = 0;
+            count3Score=0;
+            count4Score=0;
+            count4Time=0;
+            previousTime = System.nanoTime();
+            restart = false;
+        }
+
+        long currentTime = System.nanoTime(); // الحصول على الوقت الحالي
+
+        if (currentTime - previousTime >= oneSecondInNano) {
+            previousTime = currentTime;
+
+            if (!isGameLost) {
+                count2Time++;
+            }
+
+            if (count2Time >= 10) {
+                count2Time = 0;
+                count3Time++;
+            }
+
+
+            if (count3Time >= 10) {
+                count3Time = 0;
+                count4Time++;
+            }
+
+            System.out.println("Count2: " + count2Time + ", Count3: " + count3Time);
+        }
+
+        DrawSprite(-330, 450, 76 + count2Time, 20, 20);
+        DrawSprite(-380, 450, 76 + count3Time, 20, 20);
+        DrawSprite(-430, 450, 76 + count4Time, 20, 20);
+
+
+        DrawSprite(-620, 450, 105, 20, 20); // T
+        DrawSprite(-590, 450, 94, 5, 20);   // i
+        DrawSprite(-550, 450, 98, 20, 20); // M
+        DrawSprite(-497, 450, 90, 20, 20); // E
+
+        DrawSprite(-200, 450, 104, 20, 20); // S
+        DrawSprite(-150, 450, 88, 20, 20);  // C
+        DrawSprite(-100, 450, 100, 20, 20); // O
+        DrawSprite(-50, 450, 103, 20, 20); // R
+        DrawSprite(0, 450, 90, 20, 20);   // E
+    }
+
+
     @Override
     public void mouseDragged(MouseEvent e) {
 
     }
 
-    /*
-     * KeyListener 8432677
-     */
 
 
     @Override
@@ -888,7 +988,6 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             x_multi_ball2 += dx_multi_ball2;
                             y_multi_ball2 += dy_multi_ball2;
                         }
-                        //القاع
                         if (-hight >= y_multi_ball1 || -hight >= y_multi_ball2) {
                             startBall = false;
                             x_multi_ball1 = 250;
@@ -896,7 +995,6 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             y_multi_ball1 = -100;
                             y_multi_ball2 = -100;
                         }
-                        //الحيطان
                         double r = 15;
                         if (x_multi_ball1 >= width - r || x_multi_ball1 <= 0 + r) {
                             dx_multi_ball1 = -dx_multi_ball1;
@@ -930,15 +1028,10 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             x_multi_1 = 250;
 
                             startBall = false;
-//                        dx_multi_ball1 = 3;
-//                        dx_multi_ball2 = 3;
-//                        dy_multi_ball2 = 3;
-//                        dy_multi_ball1 = 3;
                         }
-                        // Bar dimensions and position
                         double barWidth = 200;
                         double barHeight = 15;
-                        double barY = -450; // Bar's fixed Y position
+                        double barY = -450;
                         for (Brick brick3 : bricks) {
                             if (brick3.visible) {
                                 double left = brick3.x - brickWidth / 5;
@@ -992,7 +1085,6 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             h3 = false;
                         }
 
-// Check collision with the bar
                         if (y_multi_ball1 - r <= barY + barHeight / 2 && y_multi_ball1 + r >= barY - barHeight / 2) {
                             if (x_multi_ball1 >= x_multi_1 - barWidth / 2 && x_multi_ball1 <= x_multi_1 + barWidth / 2) {
                                 dy_multi_ball1 = -dy_multi_ball1; // Reverse vertical direction
@@ -1017,26 +1109,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                     } else {
 
                         DrawSprite(0, 0, 73, 400, 400);
-//                gl.glColor3f(1, 1, 1);
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(-65, 270);
-//                gl.glVertex2d(145, 270);
-//                gl.glVertex2d(145, -310);
-//                gl.glVertex2d(-65, -310);
-//                gl.glEnd();
-//
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(165, 270);
-//                gl.glVertex2d(375, 270);
-//                gl.glVertex2d(375, -310);
-//                gl.glVertex2d(165, -310);
-//                gl.glEnd();
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(-295, 270);
-//                gl.glVertex2d(-85, 270);
-//                gl.glVertex2d(-85, -310);
-//                gl.glVertex2d(-295, -310);
-//                gl.glEnd();
+
                     }
 
                     if (isclicked) {
@@ -1055,17 +1128,15 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         }
 
 
-// تحقق من النقر في المنطقة المحددة
         if (isclicked && mouseX >= -480 && mouseX <= -390 && mouseY <= 690 && mouseY >= 560) {
-            isclicked = false;  // إعادة تعيين حالة النقر
-            info = false;         // تفعيل عرض الرسمة
-            System.out.println("info");  // طباعة لتأكيد النقر
-            System.out.println("mouseX: " + mouseX + " mouseY: " + mouseY);  // طباعة إحداثيات الماوس
+            isclicked = false;
+            info = false;
+            System.out.println("info");
+            System.out.println("mouseX: " + mouseX + " mouseY: " + mouseY);
         }
 
-// إذا كانت "info" مفعلة، نقوم برسم الرسمة رقم 112
         if (!info) {
-            DrawSprite(0, 0, 112, 300, 300);  // رسم الصورة رقم 112
+            DrawSprite(0, 0, 112, 300, 300);
         }
         if(isclicked&&mouseX<=200&&mouseX>=130&&mouseY<=-275&&mouseY>=-320){
             isclicked=false;
