@@ -256,9 +256,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                 double right = brick.x + brickWidth / 5;
                 double top = brick.y + brickHeight / 5;
                 double bottom = brick.y - brickHeight / 5;
-
                 if (x_ball + 15 > left && x_ball - 15 < right && y_ball + 15 > bottom && y_ball - 15 < top) {
-
                     if (x_ball + 10 >= left && x_ball - 10 <= right) {
                         dy = -dy;
                     } else {
@@ -266,6 +264,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                     }
                     brick.visible = false;
                     brokenBricks++;
+                    count3Score++;
                     playSound();
                     increaseSpeed();
                     break;
@@ -339,12 +338,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
             count4Score = 0;
             restart = false;
         }
-        for (Brick brick : level1) {
-            if (!brick.visible) {
-                count3Score++;
-                break;
-            }
-        }
+
 
         if (count3Score > 9) {
             count3Score = 0;
@@ -436,10 +430,8 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
             initLevels(-650, 380, 72, level6, 11);
         }
 
-        // تحديث العدد الإجمالي للطوب
         countBricks = levels.get(level - 1).size();
 
-        // إعادة تعيين حالة الفوز والخسارة
         isGameLost = false;
         isGameWon = false;
     }
