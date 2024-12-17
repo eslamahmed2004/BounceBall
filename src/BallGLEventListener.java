@@ -247,19 +247,19 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         }
 
         // رسم التايم
-        DrawSprite(-350, 350, 76 + count2, 20, 20);// الاحاد
-        DrawSprite(-400, 350, 77 + count3, 20, 20);// العشرات
-        DrawSprite(-620, 350, 106, 20, 20); //T
-        DrawSprite(-590, 350, 95, 5, 20);// ال i ال بايظة
-        DrawSprite(-550, 350, 99, 20, 20);//M
-        DrawSprite(-497, 350, 91, 20, 20);//E
+        DrawSprite(-350, 350, 71 + count2, 20, 20);// الاحاد
+        DrawSprite(-400, 350, 72 + count3, 20, 20);// العشرات
+        DrawSprite(-620, 350, 100, 20, 20); //T
+        DrawSprite(-590, 350, 89, 5, 20);// ال i ال بايظة
+        DrawSprite(-550, 350, 93, 20, 20);//M
+        DrawSprite(-497, 350, 85, 20, 20);//E
 
         //رسم ال score
-        DrawSprite(-620, 280, 105, 20, 20);
-        DrawSprite(-570, 280, 89, 20, 20);
-        DrawSprite(-520, 280, 101, 20, 20);
-        DrawSprite(-470, 280, 104, 20, 20);
-        DrawSprite(-420, 280, 91, 20, 20);
+        DrawSprite(-620, 280, 100, 20, 20);
+        DrawSprite(-570, 280, 83, 20, 20);
+        DrawSprite(-520, 280, 95, 20, 20);
+        DrawSprite(-470, 280, 98, 20, 20);
+        DrawSprite(-420, 280, 85, 20, 20);
 
 
 
