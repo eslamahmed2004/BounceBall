@@ -2,6 +2,7 @@
 import com.sun.opengl.util.FPSAnimator ;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.media.opengl.GLCanvas;
 
@@ -19,6 +20,7 @@ public class BounceBall extends JFrame {
         glcanvas.addKeyListener(listener);
         glcanvas.addMouseListener(listener);
         glcanvas.addMouseMotionListener(listener);
+
         add(glcanvas, BorderLayout.CENTER);
         setSize(1400, 1000);
         glcanvas.setFocusable(true);
