@@ -461,26 +461,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                 } else {
 
                     DrawSprite(0, 0, 105, 400, 400);
-//                gl.glColor3f(1, 1, 1);
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(-65, 270);
-//                gl.glVertex2d(145, 270);
-//                gl.glVertex2d(145, -310);
-//                gl.glVertex2d(-65, -310);
-//                gl.glEnd();
-//
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(165, 270);
-//                gl.glVertex2d(375, 270);
-//                gl.glVertex2d(375, -310);
-//                gl.glVertex2d(165, -310);
-//                gl.glEnd();
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(-295, 270);
-//                gl.glVertex2d(-85, 270);
-//                gl.glVertex2d(-85, -310);
-//                gl.glVertex2d(-295, -310);
-//                gl.glEnd();
+
                 }
                 if (isclicked) {
                     isclicked = false;
