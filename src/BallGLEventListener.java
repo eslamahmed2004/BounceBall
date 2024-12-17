@@ -27,7 +27,10 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         BounceBall.animator.start();
     }
 
-
+    /*
+     5 means gun in array pos
+     x_singleand y coordinate for gun
+     */
     double width = 700, hight = 500;
     GL gl;
     List<Brick> level1 = new ArrayList<>();
@@ -91,8 +94,8 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
     long startTime = System.nanoTime();
     long elapsedTime;
     boolean oneplayer = false;
-    List<Brick> bricks = new ArrayList<>();
-    double brickWidth = 200, brickHeight = 80;
+    List<Brick> bricks = new ArrayList<>(); // قائمة تحتوي على جميع الطوب
+    double brickWidth = 200, brickHeight = 80; // أبعاد الطوب
     double x_single = 0;
     double x_single_ball1 = 0, y_single_ball1 = -100;
     double dx_single = -5;
@@ -782,9 +785,10 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                         }
 
 
+// Check collision with the bar
                         if (y_ai_ball1 - r <= barY + barHeight / 2 && y_ai_ball1 + r >= barY - barHeight / 2) {
                             if (x_ai_ball1 >= x_ai_1 - barWidth / 2 && x_ai_ball1 <= x_ai_1 + barWidth / 2) {
-                                dy_ai_ball1 = -dy_ai_ball1;
+                                dy_ai_ball1 = -dy_ai_ball1; // Reverse vertical direction
                                 double barWight = 200;
 
                                 dx_ai_ball1 = (x_ai_ball1 - x_ai_1) / (100 / 3);
@@ -794,7 +798,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                         }
                         if (y_ai_ball2 - r <= barY + barHeight / 2 && y_ai_ball2 + r >= barY - barHeight / 2) {
                             if (x_ai_ball2 >= x_ai_2 - barWidth / 2 && x_ai_ball2 <= x_ai_2 + barWidth / 2) {
-                                dy_ai_ball2 = -dy_ai_ball2;
+                                dy_ai_ball2 = -dy_ai_ball2; // Reverse vertical direction
                                 double barWight = 200;
 
                                 dx_ai_ball2 = (x_ai_ball2 - x_ai_2) / (100 / 3);
@@ -806,7 +810,27 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                     } else {
 
                         DrawSprite(0, 0, 72, 400, 400);
-//                  }
+//                gl.glColor3f(1, 1, 1);
+//                gl.glBegin(GL.GL_POLYGON);
+//                gl.glVertex2d(-65, 270);
+//                gl.glVertex2d(145, 270);
+//                gl.glVertex2d(145, -310);
+//                gl.glVertex2d(-65, -310);
+//                gl.glEnd();
+//
+//                gl.glBegin(GL.GL_POLYGON);
+//                gl.glVertex2d(165, 270);
+//                gl.glVertex2d(375, 270);
+//                gl.glVertex2d(375, -310);
+//                gl.glVertex2d(165, -310);
+//                gl.glEnd();
+//                gl.glBegin(GL.GL_POLYGON);
+//                gl.glVertex2d(-295, 270);
+//                gl.glVertex2d(-85, 270);
+//                gl.glVertex2d(-85, -310);
+//                gl.glVertex2d(-295, -310);
+//                gl.glEnd();
+                    }
 
                     if (isclicked) {
                         isclicked = false;
@@ -822,7 +846,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                 }
                 if (multiplayer) {
                     for (Brick brick3 : bricks) {
-                        if (brick3.visible) {
+                        if (brick3.visible) { // يتم رسم الطوب فقط إذا كان مرئيًا
                             gl.glPushMatrix();
                             gl.glTranslated(brick3.x, brick3.y, 0);
                             DrawSprite(0, 0, 1, (float) (brickWidth / 5), (float) (brickHeight / 5));
@@ -906,11 +930,15 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             x_multi_1 = 250;
 
                             startBall = false;
-
+//                        dx_multi_ball1 = 3;
+//                        dx_multi_ball2 = 3;
+//                        dy_multi_ball2 = 3;
+//                        dy_multi_ball1 = 3;
                         }
+                        // Bar dimensions and position
                         double barWidth = 200;
                         double barHeight = 15;
-                        double barY = -450;
+                        double barY = -450; // Bar's fixed Y position
                         for (Brick brick3 : bricks) {
                             if (brick3.visible) {
                                 double left = brick3.x - brickWidth / 5;
@@ -919,22 +947,24 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                                 double bottom = brick3.y - brickHeight / 5;
 
                                 if (x_multi_ball1 + 15 > left && x_multi_ball1 - 15 < right && y_multi_ball1 + 15 > bottom && y_multi_ball1 - 15 < top) {
+                                    // التحقق من موقع التصادم لتحديد اتجاه الكرة
                                     if (x_multi_ball1 + 10 >= left && x_multi_ball1 - 10 <= right) {
                                         dy_multi_ball1 = -dy_multi_ball1;
                                     } else {
                                         dx_multi_ball1 = -dx_multi_ball1;
                                     }
-                                    brick3.visible = false;
+                                    brick3.visible = false; // إخفاء الطوب
                                     playSound();
                                     break;
                                 }
                                 if (x_multi_ball2 + 15 > left && x_multi_ball2 - 15 < right && y_multi_ball2 + 15 > bottom && y_multi_ball2 - 15 < top) {
+                                    // التحقق من موقع التصادم لتحديد اتجاه الكرة
                                     if (x_multi_ball2 + 10 >= left && x_multi_ball2 - 10 <= right) {
                                         dy_multi_ball2 = -dy_multi_ball2;
                                     } else {
                                         dx_multi_ball2 = -dx_multi_ball2;
                                     }
-                                    brick3.visible = false;
+                                    brick3.visible = false; // إخفاء الطوب
                                     playSound();
                                     break;
                                 }
@@ -962,6 +992,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             h3 = false;
                         }
 
+// Check collision with the bar
                         if (y_multi_ball1 - r <= barY + barHeight / 2 && y_multi_ball1 + r >= barY - barHeight / 2) {
                             if (x_multi_ball1 >= x_multi_1 - barWidth / 2 && x_multi_ball1 <= x_multi_1 + barWidth / 2) {
                                 dy_multi_ball1 = -dy_multi_ball1; // Reverse vertical direction
@@ -986,7 +1017,26 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                     } else {
 
                         DrawSprite(0, 0, 73, 400, 400);
+//                gl.glColor3f(1, 1, 1);
+//                gl.glBegin(GL.GL_POLYGON);
+//                gl.glVertex2d(-65, 270);
+//                gl.glVertex2d(145, 270);
+//                gl.glVertex2d(145, -310);
+//                gl.glVertex2d(-65, -310);
+//                gl.glEnd();
 //
+//                gl.glBegin(GL.GL_POLYGON);
+//                gl.glVertex2d(165, 270);
+//                gl.glVertex2d(375, 270);
+//                gl.glVertex2d(375, -310);
+//                gl.glVertex2d(165, -310);
+//                gl.glEnd();
+//                gl.glBegin(GL.GL_POLYGON);
+//                gl.glVertex2d(-295, 270);
+//                gl.glVertex2d(-85, 270);
+//                gl.glVertex2d(-85, -310);
+//                gl.glVertex2d(-295, -310);
+//                gl.glEnd();
                     }
 
                     if (isclicked) {
@@ -1005,15 +1055,17 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         }
 
 
+// تحقق من النقر في المنطقة المحددة
         if (isclicked && mouseX >= -480 && mouseX <= -390 && mouseY <= 690 && mouseY >= 560) {
-            isclicked = false;
-            info = false;
-            System.out.println("info");
-            System.out.println("mouseX: " + mouseX + " mouseY: " + mouseY);
+            isclicked = false;  // إعادة تعيين حالة النقر
+            info = false;         // تفعيل عرض الرسمة
+            System.out.println("info");  // طباعة لتأكيد النقر
+            System.out.println("mouseX: " + mouseX + " mouseY: " + mouseY);  // طباعة إحداثيات الماوس
         }
 
+// إذا كانت "info" مفعلة، نقوم برسم الرسمة رقم 112
         if (!info) {
-            DrawSprite(0, 0, 112, 300, 300);
+            DrawSprite(0, 0, 112, 300, 300);  // رسم الصورة رقم 112
         }
         if(isclicked&&mouseX<=200&&mouseX>=130&&mouseY<=-275&&mouseY>=-320){
             isclicked=false;
@@ -1025,4 +1077,3 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
         }
     }
 }
-    }
