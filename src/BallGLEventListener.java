@@ -324,6 +324,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
             DrawSprite(0, 0, 74, 400, 400);
         }
 
+
         drawHearts();
         Time2();
         Score();
@@ -688,17 +689,17 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                     if(!isPaused) {
 
                         if (level == 1) {
-                            drawLevels(level1); // عرض المستوى الأول
+                            drawLevels(level1);
                         } else if (level == 2) {
-                            drawLevels(level2); // عرض المستوى الثاني
+                            drawLevels(level2);
                         } else if (level == 3) {
-                            drawLevels(level3); // عرض المستوى الثالث
+                            drawLevels(level3);
                         } else if (level == 4) {
-                            drawLevels(level4); // عرض المستوى الرابع
+                            drawLevels(level4);
                         } else if (level == 5) {
-                            drawLevels(level5); // عرض المستوى الخامس
+                            drawLevels(level5);
                         } else if (level == 6) {
-                            drawLevels(level6); // عرض المستوى السادس
+                            drawLevels(level6);
                         }
 
                         drawPaddle(gl, x_single, y);
@@ -820,7 +821,6 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                             DrawSprite(0, 0, 74, 400, 400);
 
                         }
-                        // Bar dimensions and position
                         double barWidth = 200;
                         double barHeight = 15;
                         double barY = -450; // Bar's fixed Y position
@@ -877,7 +877,6 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                         }
 
 
-// Check collision with the bar
                         if (y_ai_ball1 - r <= barY + barHeight / 2 && y_ai_ball1 + r >= barY - barHeight / 2) {
                             if (x_ai_ball1 >= x_ai_1 - barWidth / 2 && x_ai_ball1 <= x_ai_1 + barWidth / 2) {
                                 dy_ai_ball1 = -dy_ai_ball1; // Reverse vertical direction
@@ -902,26 +901,7 @@ BallGLEventListener implements GLEventListener, KeyListener, MouseListener, Mous
                     } else {
 
                         DrawSprite(0, 0, 72, 400, 400);
-//                gl.glColor3f(1, 1, 1);
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(-65, 270);
-//                gl.glVertex2d(145, 270);
-//                gl.glVertex2d(145, -310);
-//                gl.glVertex2d(-65, -310);
-//                gl.glEnd();
 //
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(165, 270);
-//                gl.glVertex2d(375, 270);
-//                gl.glVertex2d(375, -310);
-//                gl.glVertex2d(165, -310);
-//                gl.glEnd();
-//                gl.glBegin(GL.GL_POLYGON);
-//                gl.glVertex2d(-295, 270);
-//                gl.glVertex2d(-85, 270);
-//                gl.glVertex2d(-85, -310);
-//                gl.glVertex2d(-295, -310);
-//                gl.glEnd();
                     }
 
                     if (isclicked) {
